@@ -1,16 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <!-- Handsontable (UI) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/styles/handsontable.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/styles/ht-theme-main.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/handsontable/styles/handsontable.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/handsontable/styles/ht-theme-main.min.css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
     <script defer src="/js/app.js"></script>
-</head>
-<body>
-    <div id="example"></div>
-</body>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div id="preExcelData"></div>
+    <div class="options">
+        <div class="convertContainer">
+          <button class="convert">Convert</button>
+        </div>
+        <div id="lab">
+          <label>
+            <input type="radio" name="labOptions" value="a" checked />
+            OL
+          </label>
+    
+          <label>
+            <input type="radio" name="labOptions" value="b" />
+            Cohn
+          </label>
+        </div>
+        <div id="study">
+          <label>
+            <input type="radio" name="studyOption" value="a" checked />
+            Chap
+          </label>
+    
+          <label>
+            <input type="radio" name="studyOption" value="b" />
+            Porch
+          </label>
+
+          <label>
+            <input type="radio" name="studyOption" value="c" />
+            LatinX
+          </label>
+        </div>
+        <div id="sampleType">
+          <label>
+            <input type="radio" name="sampleTypeOption" value="a" checked />
+            Serum
+          </label>
+    
+          <label>
+            <input type="radio" name="sampleTypeOption" value="b" />
+            Plasma
+          </label>
+
+          <label>
+            <input type="radio" name="sampleTypeOption" value="c" />
+            Whole Blood
+          </label>
+
+          <label>
+            <input type="radio" name="sampleTypeOption" value="d" />
+            RCR
+          </label>
+        </div>
+    </div>
+    <div id="postExcelData"></div>
+  </body>
 </html>

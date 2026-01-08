@@ -1,0 +1,28 @@
+.convertContainer {
+    padding-bottom: 100px;
+}
+
+.options {
+    display: ruby;
+}
+
+#lab{
+    display: flex;
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 25px;
+}
+
+#study{
+    display: flex;
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 25px;
+}
+
+#sampleType{
+    display: flex;
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 25px;
+}
