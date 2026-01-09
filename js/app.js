@@ -2,8 +2,6 @@ const preChangedData = document.querySelector('#preExcelData');
 const postChangedData = document.querySelector('#postExcelData');
 const convertButton = document.querySelector(".convert")
 
-
-
 const data = [
   ["", ""],
   ["", ""],

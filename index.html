@@ -17,60 +17,46 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <div id="preExcelData"></div>
-    <div class="options">
+    <header class="site-header">
+      <div class="site-brand">Freezer Converter</div>
+      <div class="site-sub">Quickly map and transform spreadsheet rows</div>
+    </header>
+
+    <main class="site-container">
+      <section class="tables">
+        <div id="preExcelData" class="hot-card">
+          <div class="card-title">Input</div>
+        </div>
+        <div id="postExcelData" class="hot-card">
+          <div class="card-title">Output</div>
+        </div>
+      </section>
+
+      <aside class="options">
         <div class="convertContainer">
           <button class="convert">Convert</button>
         </div>
-        <div id="lab">
-          <label>
-            <input type="radio" name="labOptions" value="a" checked />
-            OL
-          </label>
-    
-          <label>
-            <input type="radio" name="labOptions" value="b" />
-            Cohn
-          </label>
-        </div>
-        <div id="study">
-          <label>
-            <input type="radio" name="studyOption" value="c" checked />
-            Chap
-          </label>
-    
-          <label>
-            <input type="radio" name="studyOption" value="d" />
-            Porch
-          </label>
+        <fieldset class="option-group">
+          <legend>Lab</legend>
+          <label><input type="radio" name="labOptions" value="a" checked /> OL</label>
+          <label><input type="radio" name="labOptions" value="b" /> Cohn</label>
+        </fieldset>
 
-          <label>
-            <input type="radio" name="studyOption" value="e" />
-            LatinX
-          </label>
-        </div>
-        <div id="sampleType">
-          <label>
-            <input type="radio" name="sampleTypeOption" value="f" checked />
-            Serum
-          </label>
-    
-          <label>
-            <input type="radio" name="sampleTypeOption" value="g" />
-            Plasma
-          </label>
+        <fieldset class="option-group">
+          <legend>Study</legend>
+          <label><input type="radio" name="studyOption" value="c" checked /> Chap</label>
+          <label><input type="radio" name="studyOption" value="d" /> Porch</label>
+          <label><input type="radio" name="studyOption" value="e" /> LatinX</label>
+        </fieldset>
 
-          <label>
-            <input type="radio" name="sampleTypeOption" value="h" />
-            Whole Blood
-          </label>
-
-          <label>
-            <input type="radio" name="sampleTypeOption" value="i" />
-            RCR
-          </label>
-        </div>
-    </div>
-    <div id="postExcelData"></div>
+        <fieldset class="option-group">
+          <legend>Sample Type</legend>
+          <label><input type="radio" name="sampleTypeOption" value="f" checked /> Serum</label>
+          <label><input type="radio" name="sampleTypeOption" value="g" /> Plasma</label>
+          <label><input type="radio" name="sampleTypeOption" value="h" /> Whole Blood</label>
+          <label><input type="radio" name="sampleTypeOption" value="i" /> RCR</label>
+        </fieldset>
+      </aside>
+    </main>
   </body>
 </html>
