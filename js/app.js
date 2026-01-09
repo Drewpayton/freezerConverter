@@ -51,7 +51,6 @@ convertButton.addEventListener("click", function(){
 
   let selection = selectedLabRadio.value + selectedStudyRadio.value + selectedsampleTypeRadio.value
 
-  console.log(selection)
   switch (selection) {
   case "acf":
     olChapSerum(preExcelDB)
@@ -89,12 +88,8 @@ convertButton.addEventListener("click", function(){
     olLatinxRCR(preExcelDB)
     break;
   default:
-    // Code to execute if none of the cases match
     console.log("didnt work")
 }
-
-
-  // olChapPlasma(preExcelDB)
 })
 
 
