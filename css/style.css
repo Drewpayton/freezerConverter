@@ -1,3 +1,8 @@
+.handsontable td.highlight-cell {
+  background-color: #ff705d !important;
+  border: 1px solid #f1570f;
+}
+
 .site-header{
     background: linear-gradient(90deg,#2a6f97,#5bb3d9);
     color: white;

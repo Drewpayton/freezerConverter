@@ -49,6 +49,7 @@ convertButton.addEventListener("click", function(){
 
   let selection = selectedLabRadio.value + selectedStudyRadio.value + selectedsampleTypeRadio.value
 
+
   switch (selection) {
   case "acf":
     olChapSerum(preExcelDB)
@@ -89,6 +90,22 @@ convertButton.addEventListener("click", function(){
     console.log("didnt work")
 }
 })
+
+const squenceErrorCheck = (preExcelDB, hotInstance = preExcel) => {
+  preExcelDB.forEach((rowArray, rowIndex) => {
+    // iterate each cell so we have the column index
+    rowArray.forEach((cellValue, colIndex) => {
+      if (cellValue !== "" && cellValue != null) {
+        // example condition: column 8 equals "test"
+        if (colIndex === 8 && cellValue === 1) {
+          hotInstance.setCellMeta(rowIndex, colIndex, 'className', 'highlight-cell');
+        }
+      }
+    });
+  });
+
+  hotInstance.render();
+}
 
 
 const olChapPlasma = (preExcelDB) => {
