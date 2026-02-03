@@ -55,6 +55,7 @@ convertButton.addEventListener("click", function(){
     break;
   case "acg":
     olChapPlasma(preExcelDB)
+    break;
   case "ach":
     olChapWholeBlood(preExcelDB)
     break;
@@ -90,17 +91,28 @@ convertButton.addEventListener("click", function(){
 }
 })
 
+// Helper: safely parse a range like "1-5" or a single value "3".
+const parseRange = (val) => {
+  if (val == null || val === "") return [];
+  const parts = val.toString().split("-").map(s => parseInt(s, 10));
+  if (isNaN(parts[0])) return [];
+  if (parts.length === 1 || isNaN(parts[1])) parts[1] = parts[0];
+  return [parts[0], parts[1]];
+}
+
 
 const olChapPlasma = (preExcelDB) => {
   let newUpdatedDB = []
 
+
   preExcelDB.forEach(array => {
     if (array.some(element => element !== "" && element != null)){
-      splitnumber = array[8].toString().split("-")
-      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Plasma", "Available", "CHAP 2", parseInt(array[5]), parseInt(array[6]), parseInt(array[7]), `${array[8]}`, 0, "Plasma", 49, "SCP7", 500, 500]
+      const range = parseRange(array[8])
+      if (range.length === 0) return
+      const [start, end] = range
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Plasma", "Available", "CHAP 2", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Plasma", 49, "SCP7", 500, 500]
 
-      splitnumber = array[8].toString().split("-")
-      for (let i = splitnumber[0]; i <= splitnumber[1]; i++) {
+      for (let i = start; i <= end; i++) {
         let pushedArryCopy = [...pushedArray]
         pushedArryCopy[10] = parseInt(i)
 
@@ -116,11 +128,12 @@ const olChapSerum = (preExcelDB) => {
 
   preExcelDB.forEach(array => {
     if (array.some(element => element !== "" && element != null)){
-      splitnumber = array[8].toString().split("-")
-      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Serum", "Available", "CHAP 2", parseInt(array[5]), parseInt(array[6]), parseInt(array[7]), `${array[8]}`, 0, "Serum", 48, "SCP7", 500, 500]
+      const range = parseRange(array[8])
+      if (range.length === 0) return
+      const [start, end] = range
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Serum", "Available", "CHAP 2", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Serum", 48, "SCP7", 500, 500]
 
-      splitnumber = array[8].toString().split("-")
-      for (let i = splitnumber[0]; i <= splitnumber[1]; i++) {
+      for (let i = start; i <= end; i++) {
         let pushedArryCopy = [...pushedArray]
         pushedArryCopy[10] = parseInt(i)
 
@@ -136,11 +149,12 @@ const olChapWholeBlood = (preExcelDB) => {
 
   preExcelDB.forEach(array => {
     if (array.some(element => element !== "" && element != null)){
-      splitnumber = array[8].toString().split("-")
-      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Whole Blood", "Available", "CHAP 2", parseInt(array[5]), parseInt(array[6]), parseInt(array[7]), `${array[8]}`, 0, "Whole Blood", 47, "LAV 10ml", 1, 1]
+      const range = parseRange(array[8])
+      if (range.length === 0) return
+      const [start, end] = range
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Whole Blood", "Available", "CHAP 2", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Whole Blood", 47, "LAV 10ml", 1, 1]
 
-      splitnumber = array[8].toString().split("-")
-      for (let i = splitnumber[0]; i <= splitnumber[1]; i++) {
+      for (let i = start; i <= end; i++) {
         let pushedArryCopy = [...pushedArray]
         pushedArryCopy[10] = parseInt(i)
 
@@ -156,11 +170,12 @@ const olChapRCR = (preExcelDB) => {
 
   preExcelDB.forEach(array => {
     if (array.some(element => element !== "" && element != null)){
-      splitnumber = array[8].toString().split("-")
-      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Red Cells", "Available", "CHAP 2", parseInt(array[5]), parseInt(array[6]), parseInt(array[7]), `${array[8]}`, 0, "Red Cells", "", "LAV RCR", 1, 1]
+      const range = parseRange(array[8])
+      if (range.length === 0) return
+      const [start, end] = range
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Red Cells", "Available", "CHAP 2", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Red Cells", "", "LAV RCR", 1, 1]
 
-      splitnumber = array[8].toString().split("-")
-      for (let i = splitnumber[0]; i <= splitnumber[1]; i++) {
+      for (let i = start; i <= end; i++) {
         let pushedArryCopy = [...pushedArray]
         pushedArryCopy[10] = parseInt(i)
 
@@ -176,11 +191,12 @@ const olPorchPlasma = (preExcelDB) => {
 
   preExcelDB.forEach(array => {
     if (array.some(element => element !== "" && element != null)){
-      splitnumber = array[8].toString().split("-")
-      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Plasma", "Available", "PORCH 2", parseInt(array[5]), parseInt(array[6]), parseInt(array[7]), `${array[8]}`, 0, "Plasma", 49, `${array[2]}`, 500, 500]
+      const range = parseRange(array[8])
+      if (range.length === 0) return
+      const [start, end] = range
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Plasma", "Available", "PORCH 2", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Plasma", 49, `${array[2]}`, 500, 500]
 
-      splitnumber = array[8].toString().split("-")
-      for (let i = splitnumber[0]; i <= splitnumber[1]; i++) {
+      for (let i = start; i <= end; i++) {
         let pushedArryCopy = [...pushedArray]
         pushedArryCopy[10] = parseInt(i)
 
@@ -196,11 +212,12 @@ const olPorchWholeBlood = (preExcelDB) => {
 
   preExcelDB.forEach(array => {
     if (array.some(element => element !== "" && element != null)){
-      splitnumber = array[8].toString().split("-")
-      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Whole Blood", "Available", "PORCH 2", parseInt(array[5]), parseInt(array[6]), parseInt(array[7]), `${array[8]}`, 0, "Whole Blood", 47, "LAV 10ml", 1, 1]
+      const range = parseRange(array[8])
+      if (range.length === 0) return
+      const [start, end] = range
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Whole Blood", "Available", "PORCH 2", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Whole Blood", 47, "LAV 10ml", 1, 1]
 
-      splitnumber = array[8].toString().split("-")
-      for (let i = splitnumber[0]; i <= splitnumber[1]; i++) {
+      for (let i = start; i <= end; i++) {
         let pushedArryCopy = [...pushedArray]
         pushedArryCopy[10] = parseInt(i)
 
@@ -217,11 +234,12 @@ const olPorchSerum = (preExcelDB) => {
 
   preExcelDB.forEach(array => {
     if (array.some(element => element !== "" && element != null)){
-      splitnumber = array[8].toString().split("-")
-      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Serum", "Available", "PORCH 2", parseInt(array[5]), parseInt(array[6]), parseInt(array[7]), `${array[8]}`, 0, "Serum", 48, `${array[2]}`, 500, 500]
+      const range = parseRange(array[8])
+      if (range.length === 0) return
+      const [start, end] = range
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Serum", "Available", "PORCH 2", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Serum", 48, `${array[2]}`, 500, 500]
 
-      splitnumber = array[8].toString().split("-")
-      for (let i = splitnumber[0]; i <= splitnumber[1]; i++) {
+      for (let i = start; i <= end; i++) {
         let pushedArryCopy = [...pushedArray]
         pushedArryCopy[10] = parseInt(i)
 
@@ -238,11 +256,12 @@ const olPorchRCR = (preExcelDB) => {
 
   preExcelDB.forEach(array => {
     if (array.some(element => element !== "" && element != null)){
-      splitnumber = array[8].toString().split("-")
-      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Red Cells", "Available", "PORCH 2", parseInt(array[5]), parseInt(array[6]), parseInt(array[7]), `${array[8]}`, 0, "Red Cells", "", "LAV RCR", 1, 1]
+      const range = parseRange(array[8])
+      if (range.length === 0) return
+      const [start, end] = range
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Red Cells", "Available", "PORCH 2", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Red Cells", "", "LAV RCR", 1, 1]
 
-      splitnumber = array[8].toString().split("-")
-      for (let i = splitnumber[0]; i <= splitnumber[1]; i++) {
+      for (let i = start; i <= end; i++) {
         let pushedArryCopy = [...pushedArray]
         pushedArryCopy[10] = parseInt(i)
 
@@ -259,11 +278,12 @@ const olLatinxPlasma = (preExcelDB) => {
 
   preExcelDB.forEach(array => {
     if (array.some(element => element !== "" && element != null)){
-      splitnumber = array[8].toString().split("-")
-      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Plasma", "Available", "CHAP 2", parseInt(array[5]), parseInt(array[6]), parseInt(array[7]), `${array[8]}`, 0, "Plasma", 49, "SCP7", 500, 500]
+      const range = parseRange(array[8])
+      if (range.length === 0) return
+      const [start, end] = range
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Plasma", "Available", "CHAP 2", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Plasma", 49, "SCP7", 500, 500]
 
-      splitnumber = array[8].toString().split("-")
-      for (let i = splitnumber[0]; i <= splitnumber[1]; i++) {
+      for (let i = start; i <= end; i++) {
         let pushedArryCopy = [...pushedArray]
         pushedArryCopy[10] = parseInt(i)
 
@@ -280,11 +300,12 @@ const olLatinxSerum = (preExcelDB) => {
 
   preExcelDB.forEach(array => {
     if (array.some(element => element !== "" && element != null)){
-      splitnumber = array[8].toString().split("-")
-      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Plasma", "Available", "CHAP 2", parseInt(array[5]), parseInt(array[6]), parseInt(array[7]), `${array[8]}`, 0, "Plasma", 49, "SCP7", 500, 500]
+      const range = parseRange(array[8])
+      if (range.length === 0) return
+      const [start, end] = range
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Plasma", "Available", "CHAP 2", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Plasma", 49, "SCP7", 500, 500]
 
-      splitnumber = array[8].toString().split("-")
-      for (let i = splitnumber[0]; i <= splitnumber[1]; i++) {
+      for (let i = start; i <= end; i++) {
         let pushedArryCopy = [...pushedArray]
         pushedArryCopy[10] = parseInt(i)
 
@@ -301,11 +322,12 @@ const olLatinxWholeBlood = (preExcelDB) => {
 
   preExcelDB.forEach(array => {
     if (array.some(element => element !== "" && element != null)){
-      splitnumber = array[8].toString().split("-")
-      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Whole Blood", "Available", "CHAP 2", parseInt(array[5]), parseInt(array[6]), parseInt(array[7]), `${array[8]}`, 0, "Whole Blood", 47, "LAV 10ml", 1, 1]
+      const range = parseRange(array[8])
+      if (range.length === 0) return
+      const [start, end] = range
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Whole Blood", "Available", "CHAP 2", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Whole Blood", 47, "LAV 10ml", 1, 1]
 
-      splitnumber = array[8].toString().split("-")
-      for (let i = splitnumber[0]; i <= splitnumber[1]; i++) {
+      for (let i = start; i <= end; i++) {
         let pushedArryCopy = [...pushedArray]
         pushedArryCopy[10] = parseInt(i)
 
@@ -322,11 +344,12 @@ const olLatinxRCR = (preExcelDB) => {
 
   preExcelDB.forEach(array => {
     if (array.some(element => element !== "" && element != null)){
-      splitnumber = array[8].toString().split("-")
-      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Red Cells", "Available", "CHAP 2", parseInt(array[5]), parseInt(array[6]), parseInt(array[7]), `${array[8]}`, 0, "Red Cells", "", "LAV RCR", 1, 1]
+      const range = parseRange(array[8])
+      if (range.length === 0) return
+      const [start, end] = range
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Red Cells", "Available", "CHAP 2", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Red Cells", "", "LAV RCR", 1, 1]
 
-      splitnumber = array[8].toString().split("-")
-      for (let i = splitnumber[0]; i <= splitnumber[1]; i++) {
+      for (let i = start; i <= end; i++) {
         let pushedArryCopy = [...pushedArray]
         pushedArryCopy[10] = parseInt(i)
 
