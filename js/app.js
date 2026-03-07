@@ -86,6 +86,30 @@ convertButton.addEventListener("click", function(){
   case "aei":
     olLatinxRCR(preExcelDB)
     break;
+  case "bcf":
+    cohnChapSerum(preExcelDB)
+    break;
+  case "bcg":
+    cohnChapPlasma(preExcelDB)
+    break;
+  case "bch":
+    cohnChapWholeBlood(preExcelDB)
+    break;
+  case "bci":
+    cohnChapRCR(preExcelDB)
+    break;
+  case "bdf":
+    cohnPorchSerum(preExcelDB)
+    break;
+  case "bdg":
+    cohnPorchPlasma(preExcelDB)
+    break;
+  case "bdh":
+    cohnPorchWholeBlood(preExcelDB)
+    break;
+  case "bdi":
+    cohnPorchRCR(preExcelDB)
+    break;
   default:
     console.log("didnt work")
 }
@@ -281,7 +305,7 @@ const olLatinxPlasma = (preExcelDB) => {
       const range = parseRange(array[8])
       if (range.length === 0) return
       const [start, end] = range
-      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Plasma", "Available", "CHAP 2", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Plasma", 49, "SCP7", 500, 500]
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Plasma", "Available", "CHAP 3", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Plasma", 49, "SCP7", 500, 500]
 
       for (let i = start; i <= end; i++) {
         let pushedArryCopy = [...pushedArray]
@@ -303,7 +327,7 @@ const olLatinxSerum = (preExcelDB) => {
       const range = parseRange(array[8])
       if (range.length === 0) return
       const [start, end] = range
-      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Plasma", "Available", "CHAP 2", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Plasma", 49, "SCP7", 500, 500]
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Serum", "Available", "CHAP 3", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Serum", 48, "SCP7", 500, 500]
 
       for (let i = start; i <= end; i++) {
         let pushedArryCopy = [...pushedArray]
@@ -325,7 +349,7 @@ const olLatinxWholeBlood = (preExcelDB) => {
       const range = parseRange(array[8])
       if (range.length === 0) return
       const [start, end] = range
-      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Whole Blood", "Available", "CHAP 2", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Whole Blood", 47, "LAV 10ml", 1, 1]
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Whole Blood", "Available", "CHAP 3", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Whole Blood", 47, "LAV 10ml", 1, 1]
 
       for (let i = start; i <= end; i++) {
         let pushedArryCopy = [...pushedArray]
@@ -347,7 +371,179 @@ const olLatinxRCR = (preExcelDB) => {
       const range = parseRange(array[8])
       if (range.length === 0) return
       const [start, end] = range
-      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Red Cells", "Available", "CHAP 2", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Red Cells", "", "LAV RCR", 1, 1]
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Red Cells", "Available", "CHAP 3", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Red Cells", "", "LAV RCR", 1, 1]
+
+      for (let i = start; i <= end; i++) {
+        let pushedArryCopy = [...pushedArray]
+        pushedArryCopy[10] = parseInt(i)
+
+        newUpdatedDB.push(pushedArryCopy)
+      }
+    }
+  });
+
+  postExcel.updateData(newUpdatedDB)
+}
+
+const cohnChapPlasma = (preExcelDB) => {
+  let newUpdatedDB = []
+
+
+  preExcelDB.forEach(array => {
+    if (array.some(element => element !== "" && element != null)){
+      const range = parseRange(array[8])
+      if (range.length === 0) return
+      const [start, end] = range
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Plasma", "Available", "CHAP 1", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Plasma", 49, "SCP7", 500, 500]
+
+      for (let i = start; i <= end; i++) {
+        let pushedArryCopy = [...pushedArray]
+        pushedArryCopy[10] = parseInt(i)
+
+        newUpdatedDB.push(pushedArryCopy)
+      }
+    }
+  });
+
+  postExcel.updateData(newUpdatedDB)
+}
+const cohnChapSerum = (preExcelDB) => {
+  let newUpdatedDB = []
+
+  preExcelDB.forEach(array => {
+    if (array.some(element => element !== "" && element != null)){
+      const range = parseRange(array[8])
+      if (range.length === 0) return
+      const [start, end] = range
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Serum", "Available", "CHAP 1", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Serum", 48, "SCP7", 500, 500]
+
+      for (let i = start; i <= end; i++) {
+        let pushedArryCopy = [...pushedArray]
+        pushedArryCopy[10] = parseInt(i)
+
+        newUpdatedDB.push(pushedArryCopy)
+      }
+    }
+  });
+
+  postExcel.updateData(newUpdatedDB)
+}
+const cohnChapWholeBlood = (preExcelDB) => {
+  let newUpdatedDB = []
+
+  preExcelDB.forEach(array => {
+    if (array.some(element => element !== "" && element != null)){
+      const range = parseRange(array[8])
+      if (range.length === 0) return
+      const [start, end] = range
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Whole Blood", "Available", "CHAP 1", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Whole Blood", 47, "LAV 10ml", 1, 1]
+
+      for (let i = start; i <= end; i++) {
+        let pushedArryCopy = [...pushedArray]
+        pushedArryCopy[10] = parseInt(i)
+
+        newUpdatedDB.push(pushedArryCopy)
+      }
+    }
+  });
+
+  postExcel.updateData(newUpdatedDB)
+}
+const cohnChapRCR = (preExcelDB) => {
+  let newUpdatedDB = []
+
+  preExcelDB.forEach(array => {
+    if (array.some(element => element !== "" && element != null)){
+      const range = parseRange(array[8])
+      if (range.length === 0) return
+      const [start, end] = range
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Red Cells", "Available", "CHAP 1", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Red Cells", "", "LAV RCR", 1, 1]
+
+      for (let i = start; i <= end; i++) {
+        let pushedArryCopy = [...pushedArray]
+        pushedArryCopy[10] = parseInt(i)
+
+        newUpdatedDB.push(pushedArryCopy)
+      }
+    }
+  });
+
+  postExcel.updateData(newUpdatedDB)
+}
+const cohnPorchPlasma = (preExcelDB) => {
+  let newUpdatedDB = []
+
+  preExcelDB.forEach(array => {
+    if (array.some(element => element !== "" && element != null)){
+      const range = parseRange(array[8])
+      if (range.length === 0) return
+      const [start, end] = range
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Plasma", "Available", "PORCH 1", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Plasma", 49, `${array[2]}`, 500, 500]
+
+      for (let i = start; i <= end; i++) {
+        let pushedArryCopy = [...pushedArray]
+        pushedArryCopy[10] = parseInt(i)
+
+        newUpdatedDB.push(pushedArryCopy)
+      }
+    }
+  });
+
+  postExcel.updateData(newUpdatedDB)
+}
+const cohnPorchWholeBlood = (preExcelDB) => {
+  let newUpdatedDB = []
+
+  preExcelDB.forEach(array => {
+    if (array.some(element => element !== "" && element != null)){
+      const range = parseRange(array[8])
+      if (range.length === 0) return
+      const [start, end] = range
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Whole Blood", "Available", "PORCH 1", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Whole Blood", 47, "LAV 10ml", 1, 1]
+
+      for (let i = start; i <= end; i++) {
+        let pushedArryCopy = [...pushedArray]
+        pushedArryCopy[10] = parseInt(i)
+
+        newUpdatedDB.push(pushedArryCopy)
+      }
+    }
+  });
+
+  postExcel.updateData(newUpdatedDB)
+}
+
+const cohnPorchSerum = (preExcelDB) => {
+  let newUpdatedDB = []
+
+  preExcelDB.forEach(array => {
+    if (array.some(element => element !== "" && element != null)){
+      const range = parseRange(array[8])
+      if (range.length === 0) return
+      const [start, end] = range
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Serum", "Available", "PORCH 1", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Serum", 48, `${array[2]}`, 500, 500]
+
+      for (let i = start; i <= end; i++) {
+        let pushedArryCopy = [...pushedArray]
+        pushedArryCopy[10] = parseInt(i)
+
+        newUpdatedDB.push(pushedArryCopy)
+      }
+    }
+  });
+
+  postExcel.updateData(newUpdatedDB)
+}
+
+const cohnPorchRCR = (preExcelDB) => {
+  let newUpdatedDB = []
+
+  preExcelDB.forEach(array => {
+    if (array.some(element => element !== "" && element != null)){
+      const range = parseRange(array[8])
+      if (range.length === 0) return
+      const [start, end] = range
+      let pushedArray = [`${array[0]}`, "", `${array[2]}`, `${array[1]}`, "Red Cells", "Available", "PORCH 1", parseInt(array[5]) || 0, parseInt(array[6]) || 0, parseInt(array[7]) || 0, `${array[8]}`, 0, "Red Cells", "", "LAV RCR", 1, 1]
 
       for (let i = start; i <= end; i++) {
         let pushedArryCopy = [...pushedArray]
